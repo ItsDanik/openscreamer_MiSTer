@@ -33,6 +33,9 @@ mv -f "$LOG" "$LOGDIR/openscreamer.prev.log" 2>/dev/null
 export MISTER_HYBRID_CORE="$CORE"
 export MISTER_HYBRID_JN="A,B,R,L,Y,X,Select,Start"
 # Everything the game writes stays in its folder
+# Development: /tmp/openscreamer_env sets variables for the game, and
+# OS_DEV_ARGS in it is put at the end of its command line
+[ -f /tmp/openscreamer_env ] && . /tmp/openscreamer_env
 # the game writes its real speed to the log every ten seconds
 export OS_FPSLOG=1
 export HOME="$GAMEDIR"
@@ -53,7 +56,7 @@ trap '[ -n "$GAME" ] && kill "$GAME" 2>/dev/null; exit 0' TERM INT
 while :; do
     # GAME: its command line (where it finds data, settings and saved games)
     # the game's own DATA and GFX folders are here; settings and saves in saves/
-    nice -n -20 taskset 0x03 ./OpenScreamer -data "$GAMEDIR" -home "$GAMEDIR/saves" >> "$LOG" 2>&1 &
+    nice -n -20 taskset 0x03 ./OpenScreamer -data "$GAMEDIR" -home "$GAMEDIR/saves" $OS_DEV_ARGS >> "$LOG" 2>&1 &
     GAME=$!
     wait "$GAME"
     RC=$?
