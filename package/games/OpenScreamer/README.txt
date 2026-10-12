@@ -39,9 +39,14 @@ OSD options
                 Vertical Pos fit the picture to it. The pixels stay as they
                 are; HDMI is not affected. Not there with
                 forced_scandoubler=1.
-  Resolution    320x200 (default), the game's own, or 320x240: more of the
-                road and sky above and below, the game's pictures and
-                instruments unstretched. Changes at once.
+  Resolution    320x200 (default), the game's own; 320x240: more of the
+                road and sky above and below; 640x200 and 640x240: twice as
+                sharp across, with the game's high-resolution pictures for
+                menus and instruments. Nothing is stretched. Changes at once.
+                The 640 modes cannot reach 60 pictures a second (30 to 40):
+                use Lock to 30 FPS with them.
+  Lock to 30 FPS  Off (default) / On: a steady 30 pictures a second, for
+                the 640 modes.
   Rumble        Off (default) / On / Strong: the controller shakes on wall hits,
                 crashes, contact with other cars, grass, skids and wheelspin.
   Menu OK, Menu Back
