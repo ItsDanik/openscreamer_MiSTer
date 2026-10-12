@@ -42,6 +42,8 @@ OSD options
   Resolution    320x200 (default), the game's own, or 320x240: more of the
                 road and sky above and below, the game's pictures and
                 instruments unstretched. Changes at once.
+  Rumble        On (default) / Off: the controller shakes on wall hits,
+                crashes, contact with other cars, grass, skids and wheelspin.
   Menu OK, Menu Back
                 the gamepad button that confirms / goes back in the game's
                 menus, whatever it does in the game. MiSTer (default) uses
