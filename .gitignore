@@ -4,3 +4,7 @@
 # Build outputs
 /build/
 /dist/
+
+# pictures the game writes when it is run from here (they show the game's artwork)
+*.ppm
+*.png
