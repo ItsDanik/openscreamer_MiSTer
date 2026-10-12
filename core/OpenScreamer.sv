@@ -71,7 +71,7 @@ localparam CONF_STR = {
 	// mixes them separately, then the game's own options from bit 24 up,
 	// followed by "-;". The first entry of an option is its default.
 	// Hires needs the game's MAPnH files: greyed out (mask bit 0) without them
-	"D0O[24],Resolution,Lores 320x200,Hires 640x400;",
+	"O[24],Resolution,320x200,320x240;",
 	"-;",
 	"O[19:16],Menu OK,MiSTer,A,B,X,Y,L,R,Select,Start;",
 	"O[23:20],Menu Back,MiSTer,A,B,X,Y,L,R,Select,Start;",
