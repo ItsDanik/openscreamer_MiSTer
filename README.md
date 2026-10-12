@@ -34,7 +34,7 @@ The game's log is in `/media/fat/logs/OpenScreamer/openscreamer.log`. TODO: wher
 | HDMI Only | **Yes** if no CRT is connected: resolutions of 640x400 and more are then progressive instead of interlaced, and the analog output is switched off while one is shown, so that a 15kHz screen can never get such a signal. Nothing changes at lower resolutions. Not needed with `forced_scandoubler=1` (VGA monitor); not there with `direct_video=1` |
 | CRT Options | for a 15kHz screen: *Horizontal Size*, *Horizontal Pos* and *Vertical Pos* fit the picture to it. The pixels stay as they are; HDMI is not affected. Not there with `forced_scandoubler=1` |
 | Resolution | **320x200** (default), the game's own, or **320x240**: more of the road and sky above and below, the game's pictures and instruments unstretched (menus in the middle of the screen, the race's instruments at its edges). It changes at once, wherever you are |
-| Rumble | **On** (default) / Off: the controller shakes on wall hits, crashes, contact with other cars, grass, skids and wheelspin |
+| Rumble | **Off** (default) / On / Strong: the controller shakes on wall hits, crashes, contact with other cars, grass, skids and wheelspin |
 | Menu OK, Menu Back | the gamepad button that confirms / goes back in the game's menus, whatever it does in the game. **MiSTer** (default) uses the OK/Back buttons of your MiSTer menu |
 
 ## Controls
