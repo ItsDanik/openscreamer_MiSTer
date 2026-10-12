@@ -28,6 +28,7 @@ Install
 
 OSD options
   Aspect ratio, Scale, Scandoubler Fx, Stereo Mix as in other cores.
+  FPS Counter   shows the pictures per second in the top left corner.
   HDMI Only     Yes if no CRT is connected: resolutions of 640x400 and
                 more are then progressive instead of interlaced, and the
                 analog output is switched off while one is shown, so that a
@@ -38,7 +39,15 @@ OSD options
                 Vertical Pos fit the picture to it. The pixels stay as they
                 are; HDMI is not affected. Not there with
                 forced_scandoubler=1.
-  TODO game options
+  Resolution    320x200 (default), the game's own, or 320x240: more of the
+                road and sky above and below, the game's pictures and
+                instruments unstretched. Changes at once.
+
+  Detail and speed: the game's own OPTIONS page has the original's three
+  DETAIL levels (LOW, MID, HI: how far the scenery is drawn). Recommended,
+  to stay at 60 pictures a second: HI detail at 320x200, MID detail at
+  320x240. The first seconds of a race, with all ten cars on the grid, can
+  still fall short of 60 at either.
   Menu OK, Menu Back
                 the gamepad button that confirms / goes back in the game's
                 menus, whatever it does in the game. MiSTer (default) uses
