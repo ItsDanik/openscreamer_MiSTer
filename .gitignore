@@ -8,3 +8,5 @@
 # pictures the game writes when it is run from here (they show the game's artwork)
 *.ppm
 *.png
+# ... but the screenshots of the README are kept (tools/screenshots.sh makes them)
+!/docs/screenshots/*.png
