@@ -42,7 +42,7 @@ assign BUTTONS = 0;
 
 //////////////////////////////////////////////////////////////////
 
-// Status bits [63:0] are forwarded to the HPS side. Bits [23:0] mean the same
+// Status bits [127:0] are forwarded to the HPS side. Bits [23:0] mean the same
 // in every hybrid core (MH_OSD_* in hybrid/hps/mister_hybrid.h), game options
 // start at bit 24 (decoded in the game's MiSTer source file). Defaults are 0.
 // The order of the options is the one in hybrid/README.md, "OSD".
@@ -55,13 +55,22 @@ localparam CONF_STR = {
 	"O[4:2],Scandoubler Fx,None,HQ2x,CRT 25%,CRT 50%,CRT 75%;",
 	// Not with direct_video (the HDMI output is the analog one then), and
 	// the CRT options not with forced_scandoubler: a VGA monitor has its own
-	"H5O[0],HDMI Only,No,Yes;",
+	// bit 1: bit 0 is the reset Main_MiSTer holds while it loads the core and
+	// clears after, so an option there was never kept (up to host version 12)
+	"H5O[1],HDMI Only,No,Yes;",
 	"H4P1,CRT Options;",
 	"P1-;",
 	// Horizontal Size: entries 0..7 are 0..+7, entries 8..31 are -24..-1
 	"P1O[68:64],Horizontal Size,0,+1,+2,+3,+4,+5,+6,+7,-24,-23,-22,-21,-20,-19,-18,-17,-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1;",
 	"P1O[72:69],Horizontal Pos,0,+1,+2,+3,+4,+5,+6,+7,-8,-7,-6,-5,-4,-3,-2,-1;",
 	"P1O[76:73],Vertical Pos,0,+1,+2,+3,+4,+5,+6,+7,-8,-7,-6,-5,-4,-3,-2,-1;",
+	// The HUD margins (MH_HudMargins(), hybrid/README.md "HUD margins"): how
+	// far the race's labels and clocks (top) and its instruments (bottom) are
+	// from the edges in 240 lines, entry 0 is 10, the default. Greyed out
+	// (menu mask bit 0) while the Resolution has 200 lines.
+	"P1-;",
+	"D0P1O[81:77],HUD (Top),10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,0,1,2,3,4,5,6,7,8,9;",
+	"D0P1O[86:82],HUD (Bottom),10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,0,1,2,3,4,5,6,7,8,9;",
 	"O[6:5],Stereo Mix,None,25%,50%,100%;",
 	// drawn by the hybrid library over the game's frames (MH_OSD_FPS)
 	"O[15],FPS Counter,Off,On;",
@@ -72,10 +81,27 @@ localparam CONF_STR = {
 	// Sound Volume / Music Volume (bits 10:7 and 14:11) go here if the game
 	// mixes them separately, then the game's own options from bit 24 up,
 	// followed by "-;". The first entry of an option is its default.
-	// Hires needs the game's MAPnH files: greyed out (mask bit 0) without them
+	// The game's options, read in openscreamer/port/src/mister.c, the same for
+	// Screamer and Screamer 2
 	"O[25:24],Resolution,320x200,320x240,640x200,640x240;",
 	"O[28],Lock to 30 FPS,Off,On;",
 	"O[27:26],Rumble,Off,On,Strong;",
+	// Cheats, what the games' typed cheat words do. Screamer's lines are
+	// hidden in Screamer 2 (menu mask bit 1) and Screamer 2's in Screamer
+	// (bit 2); the two share the triggers (T, bits 56..59, MH_OSDTriggers()),
+	// which do their thing once each time, in the menu, saved as the word's.
+	"P2,Cheats;",
+	"P2-;",
+	"H1P2O[29],Frozen Countdown,Off,On;",
+	"H1P2O[30],Mirrored,Off,On;",
+	"H1P2O[31],Upside Down,Off,On;",
+	"H1P2O[33:32],Props,Normal,Set 2,Set 3;",
+	"H1P2O[34],Afterburner Difficulty,Off,On;",
+	"H1P2T[56],Unlock the Bullet;",
+	"H1P2T[57],Unlock All Tracks;",
+	"H2P2T[56],Unlock All Tracks;",
+	"H2P2T[57],Unlock Fifth Cars;",
+	"H2P2T[58],Unlock All Leagues;",
 	"-;",
 	"O[19:16],Menu OK,MiSTer,A,B,X,Y,L,R,Select,Start;",
 	"O[23:20],Menu Back,MiSTer,A,B,X,Y,L,R,Select,Start;",
@@ -88,7 +114,7 @@ localparam CONF_STR = {
 	// default pad, Start for the menu. The game knows this list as buttons 0..9
 	// of the SDL joystick, the launcher repeats "jn" as MISTER_HYBRID_JN
 	// (package/games/OpenScreamer/danik_hybrid_launch.sh).
-	"J1,Accelerate,Brake,Gear Up,Gear Down,View,Radar,Back,Start,Menu OK,Menu Back;",
+	"J1,Accelerate,Brake,Gear Up,Gear Down,View,Radar/Mirror,Back,Start,Menu OK,Menu Back;",
 	"jn,A,B,R,L,Y,X,Select,Start;",
 	"V,v",`BUILD_DATE
 };
@@ -145,16 +171,16 @@ wire reset = RESET | buttons[1];
 
 //////////////////////////////////////////////////////////////////
 
-// The video modes of 640x400 and above have two forms (hybrid_host.sv):
-// interlaced at 15kHz for a 15kHz screen, progressive at 31kHz and more for
-// everything else; 800x600 and 1024x768 only exist in the second. A 15kHz
+// The video modes of 640x400 and 640x480 have two forms (hybrid_host.sv):
+// interlaced at 15kHz for a 15kHz screen, progressive at 31kHz for
+// everything else, the core's own picture without a game as well. A 15kHz
 // screen must never get the second, so it takes the player to say that none
 // is there: forced_scandoubler=1 in MiSTer.ini (the analog output is a VGA
 // monitor) or the option "HDMI Only", with which the analog output is
 // switched off for as long as such a signal is on it. Modes of 15kHz still
 // go to the analog output with "HDMI Only", and so does the OSD over them.
 // With direct_video the HDMI output feeds an analog screen: no "HDMI Only".
-wire       hdmi_only = status[0] & ~direct_video;
+wire       hdmi_only = status[1] & ~direct_video;
 wire       vga31 = forced_scandoubler | hdmi_only;
 
 wire       clk_vid;
@@ -188,7 +214,7 @@ hybrid_host host
 	.joy_r_analog_0(joy_r_analog_0),
 	.joy_l_analog_1(joy_l_analog_1),
 	.joy_r_analog_1(joy_r_analog_1),
-	.osd_status(status[63:0]),
+	.osd_status(status),
 	.ps2_key(ps2_key),
 	.ps2_mouse(ps2_mouse),
 	.ps2_mouse_ext(ps2_mouse_ext),
