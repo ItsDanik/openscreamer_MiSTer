@@ -44,6 +44,8 @@ Then the games' files: copy **everything** in each game's folder (the one that h
 - **Screamer:** to `/media/fat/games/dnk/OpenScreamer/screamer/`, so that there is `.../screamer/DATA/GEN.DAT`, `.../screamer/GFX/GAME.DAT` and so on. If `CONFIG/CONTROLS.CFG` is there, its keyboard keys are used. If you had the first release, your folders straight in the game's folder (`DATA`, `GFX`, `CONFIG`) keep working there.
 - **Screamer 2:** to `/media/fat/games/dnk/OpenScreamer/screamer2/`, so that there is `.../screamer2/DATA/GEN.DAT`, `.../screamer2/GFX/GAME1.DAT`, `.../screamer2/ANIMS/SCENE011.DAT` and so on. The game's music is its CD's audio tracks: as files in `screamer2/music/`, named `track_02.ogg` .. `track_09.ogg` (`.mp3` or `.wav` do as well; track 2 is the menu's, 3 to 9 the races'). Without them Screamer 2 has no music.
 
+The games' files can go on a USB drive instead, into the same folders there (`/media/usb0/games/dnk/OpenScreamer/screamer/` and `.../screamer2/`): the games look for them there first, and then keep their settings and saved games there as well (`.../OpenScreamer/saves/`). Everything else stays on the SD card.
+
 Load the game from the `Other` menu: **dnk-Screamer** or **dnk-Screamer 2**. When a game's files are missing, the core says which to copy where; each game checks its files every time it starts and says which are missing or damaged. Each game keeps its own OSD settings and button mappings. The core file itself (`_Other/dnk/dnk-OpenScreamer_*.rbf`, or from *Recent*) lists the games that are there to pick from; quitting a game then returns to the list, otherwise to the MiSTer menu.
 
 The game's log is in `/media/fat/logs/dnk/OpenScreamer/openscreamer.log`. Settings, best times, the championships, saved replays and time-attack ghosts of both games are in `/media/fat/games/dnk/OpenScreamer/saves/` (Screamer's `openscreamer.cfg`, `.records`, `.champ`, `.replays/`, `.ghosts/`; Screamer 2's `openscreamer.s2choice`, `.s2records`, `.s2replays/` and so on). A new Screamer has three tracks and twelve cars, a new Screamer 2 three tracks and the first league: the rest is won in the championship, as in the originals.
@@ -60,7 +62,6 @@ The game's log is in `/media/fat/logs/dnk/OpenScreamer/openscreamer.log`. Settin
 | Lock to 30 FPS | Off (default) / On: a steady 30 pictures a second, for the 640 modes |
 | Rumble | **Off** (default) / On / Strong: the controller shakes on wall hits, crashes, contact with other cars, grass, skids and wheelspin |
 | Cheats | what the games' cheat words do, which need a keyboard. **Screamer:** *Frozen Countdown* (the race's clock stands still), *Mirrored* (the picture and the steering left-right), *Upside Down* (the picture upside down, no cockpit view), *Props* (the tracks' second or third set of props, from the next race), *Afterburner Difficulty* (AFTERBURNER in the difficulty line); *Unlock the Bullet* and *Unlock All Tracks* (all twelve, the reversed ones too) are kept with your records, as the typed words are. **Screamer 2:** *Unlock All Tracks*, *Unlock Fifth Cars* (each team's fifth car) and *Unlock All Leagues*, kept with the game's settings. Each game shows only its own |
-| Menu OK, Menu Back | the gamepad button that confirms / goes back in the games' menus, whatever it does in a race. **MiSTer** (default) uses the OK/Back buttons of your MiSTer menu |
 
 ## Controls
 
@@ -100,7 +101,9 @@ The triggers are read from the controller directly, not through MiSTer's button 
 
 - **Racing wheel**: the wheels MiSTer itself knows (Logitech G25, G27, G29, Driving Force, Driving Force Pro and GT; Fanatec ClubSport V2.5, Podium DD1 and DD2; Thrustmaster T300RS, F430 and FGT, and a few adapters) steer with the wheel and drive with the pedals, analog: the gas pedal is R2, the brake L2. Map the wheel's buttons in the OSD as for a gamepad. While a wheel is connected, a gamepad's stick pushed up also counts as a pedal, and the gas pedal moves the menus' lines like the stick up.
 
-Change the buttons in the OSD under *Define OpenScreamer buttons*. *Menu OK* and *Menu Back* there are only needed for a button without a game function; MiSTer doesn't let you assign a button twice, so to confirm with a button that also has a game function, pick it in the OSD's Menu OK/Menu Back options instead.
+In the games' menus the buttons that confirm and go back are the ones of your MiSTer menu, whatever they do in a race: its *Menu OK* / *Menu Back* if you set them in *Define joystick buttons*, else its A / B. A controller never set up in MiSTer confirms and goes back as on its console: Cross / Circle on PlayStation, A / B on Xbox and on Nintendo.
+
+Change the buttons in the OSD under *Define OpenScreamer buttons*. *Menu OK* and *Menu Back* there are only needed for a spare button without a game function. While the OSD is open, the game gets no input.
 
 ## Building
 
