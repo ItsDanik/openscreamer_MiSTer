@@ -57,11 +57,12 @@ The game's log is in `/media/fat/logs/dnk/OpenScreamer/openscreamer.log`. Settin
 | Aspect ratio, Scale, Scandoubler Fx, Stereo Mix | as in other cores |
 | FPS Counter | shows the pictures per second in the top left corner |
 | HDMI Only | as in the other hybrid ports, for resolutions of 640x400 and more: OpenScreamer has none, so nothing changes here |
-| CRT Options | for a 15kHz screen: *Horizontal Size*, *Horizontal Pos* and *Vertical Pos* fit the picture to it. The pixels stay as they are; HDMI is not affected. The size is for the game's picture: the core's own, with its messages, keeps its width. Not there with `forced_scandoubler=1`. *HUD (Top)* and *HUD (Bottom)*: in a race with 240 rows, how many lines the race's labels and clocks at the top and its instruments at the bottom are from the edges of the screen, 0 to 24 (10 by default), so that a CRT's overscan does not hide them; greyed out with 200 rows. They move at once |
+| CRT Options | for a 15kHz screen: *Horizontal Size*, *Horizontal Pos* and *Vertical Pos* fit the picture to it. The pixels stay as they are; HDMI is not affected. The size is for the game's picture: the core's own, with its messages, keeps its width. Not there with `forced_scandoubler=1`. *HUD (Top)* and *HUD (Bottom)*: in a race with 240 rows, how many lines the race's labels and clocks at the top and its instruments at the bottom are from the edges of the screen, 0 to 24 (0 by default), so that a CRT's overscan does not hide them; greyed out with 200 rows. They move at once |
 | Resolution | both games. **320x200** (default), the games' own; **320x240**: more of the road and sky above and below; **640x200** and **640x240**: twice as sharp across, with the games' high-resolution pictures for menus and instruments. Nothing is stretched: menus sit in the middle of a 240-row screen, the race's instruments at its edges (see *HUD (Top)* / *HUD (Bottom)*). It changes at once, wherever you are; a change of width in a menu starts the menu again. The 640 modes cannot reach 60 pictures a second (about 35 to 45): use *Lock to 30 FPS* with them |
 | Lock to 30 FPS | Off (default) / On: a steady 30 pictures a second, for the 640 modes |
 | Rumble | **Off** (default) / On / Strong: the controller shakes on wall hits, crashes, contact with other cars, grass, skids and wheelspin |
 | Cheats | what the games' cheat words do, which need a keyboard. **Screamer:** *Frozen Countdown* (the race's clock stands still), *Mirrored* (the picture and the steering left-right), *Upside Down* (the picture upside down, no cockpit view), *Props* (the tracks' second or third set of props, from the next race), *Afterburner Difficulty* (AFTERBURNER in the difficulty line); *Unlock the Bullet* and *Unlock All Tracks* (all twelve, the reversed ones too) are kept with your records, as the typed words are. **Screamer 2:** *Unlock All Tracks*, *Unlock Fifth Cars* (each team's fifth car) and *Unlock All Leagues*, kept with the game's settings. Each game shows only its own |
+| Save Diagnostic Report | the last line: see [If something is wrong](#if-something-is-wrong) |
 
 ## Controls
 
@@ -139,6 +140,12 @@ The toolchain image (Debian bullseye, glibc 2.31 to match the MiSTer) is built f
   ```
 - `MISTER=root@<address> tools/test_on_mister.sh S1` tries the build on a MiSTer next to what is installed there, without installing it: from `/tmp`, with the installed game's folder mirrored there (what the game writes stays in `/tmp`) and its own OSD settings. `S2` for Screamer 2, `list` and `nodata` for the core started by itself and without data, `log` for the game's log, `stop` to remove all of it again. `TEST_ENV="OS_TALL=1 OS_WIDE=1"` fixes the resolution for a test (the OSD's is not followed then).
 - `touch /tmp/openscreamer_nolaunch` on the MiSTer keeps the core loaded without starting the game, so you can start a development binary by hand (`MISTER_HYBRID_CORE=OpenScreamer`, and `MISTER_HYBRID_SET=OpenScreamer_S1` or `_S2` for a game). `/tmp/danik_hybrid_ports.log` shows what the launcher daemon did.
+
+## If something is wrong
+
+If the game stutters, the sound breaks up or something else is wrong, open the OSD while it happens and pick **Save Diagnostic Report**, the last line of the menu. The game keeps running; MiSTer's info box says the report is saved in `games/dnk/diagnostics/` on the SD card. Send that file (`OpenScreamer_<date>_<time>.zip`) with a few words on what went wrong.
+
+The report has the setup (versions, the video and audio lines of `MiSTer.ini`, the OSD settings), how the last 60 seconds went, the game's log and a screenshot. Nothing else: no network settings, addresses, saved games or lists of your files.
 
 ## Support
 

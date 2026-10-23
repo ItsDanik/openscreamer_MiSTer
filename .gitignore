@@ -10,3 +10,5 @@
 *.png
 # ... but the screenshots of the README are kept (tools/screenshots.sh makes them)
 !/docs/screenshots/*.png
+# ... and each game's logo, shown at its start (host version 17; Danik's)
+!/package/logos/*.png
