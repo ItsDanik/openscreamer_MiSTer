@@ -14,3 +14,5 @@
 !/docs/*.png
 # ... and each game's logo, shown at its start (host version 17; Danik's)
 !/package/logos/*.png
+# ... and the gameplay screenshots for dnkLauncher (hybrid/docs/dnklauncher.md)
+!/package/screens/*.png
