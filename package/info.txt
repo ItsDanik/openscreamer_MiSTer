@@ -2,4 +2,4 @@
 # a line each: <id>|<year>|<developer>|<description>. The description is shown on the
 # game's Details page, at most 4 lines there (about 340 characters).
 S1|1995|Graffiti|An arcade racer in the spirit of the coin-op greats: fast cars modelled on real ones, tracks through cities, mountains and coastlines, a championship to win against the clock and a field of rivals.
-S2|1996|Milestone|The sequel, all in textured 3D: new tracks across the world, from rally roads to city streets, new cars, and a championship and challenges against the clock.
+S2|1996|Milestone|The sequel to Screamer, by the same team, now named Milestone: new tracks across the world, from rally roads through the countryside to city streets, new cars, and a championship and challenges against the clock.
