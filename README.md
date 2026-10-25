@@ -34,7 +34,7 @@ With `update_all` (Downloader 2.4 or newer, which update_all keeps up to date):
    |---|---|
    | Screamer | `screamer/`, so that there is `.../screamer/DATA/GEN.DAT`, `.../screamer/GFX/GAME.DAT` and so on |
    | Screamer 2 | `screamer2/`, so that there is `.../screamer2/DATA/GEN.DAT`, `.../screamer2/ANIMS/SCENE011.DAT` and so on. Its music is the CD's audio tracks, as files in `screamer2/music/` named `track_02.ogg` .. `track_09.ogg` (`.mp3` or `.wav` do as well); without them Screamer 2 has no music |
-5. Load the game from the `Other` menu, e.g. **dnk-Screamer**.
+5. Load the game from the `Other` menu, e.g. **dnk-Screamer**, or from the `Hybrid Ports` folder if you moved the games there in the launcher.
 
 > [!NOTE]
 > The game data can go on a USB drive instead, into the same folders there (`/media/usb0/games/dnk/OpenScreamer/screamer/` and `.../screamer2/`): the game looks for it there first, and then keeps its settings and saved games there as well. Everything else stays on the SD card.
