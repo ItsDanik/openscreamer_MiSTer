@@ -66,12 +66,13 @@ Run it from the `Scripts` menu again whenever you want to change something. Its 
 |---|---|
 | Aspect ratio, Scale, Scandoubler Fx, Stereo Mix | as in other cores |
 | FPS Counter | shows the pictures per second in the top left corner |
-| HDMI Only | as in the other hybrid ports, for resolutions of 640x400 and more: OpenScreamer has none, so nothing changes here |
+| HDMI Only | **Yes** if no CRT is connected: resolutions of 640x400 and more are then progressive instead of interlaced, and so is the core's own screen before the game, which moves at 60 pictures a second for a CRT and shows fine lines on HDMI without it. The analog output is switched off while one is shown, so that a 15kHz screen can never get such a signal. OpenScreamer has no such resolution, so nothing changes in the game. Not needed with `forced_scandoubler=1` (VGA monitor); not there with `direct_video=1` |
 | CRT Options | **Horizontal Size**: the picture's width<br>**Horizontal Pos**: moves it left or right<br>**Vertical Pos**: moves it up or down<br>**HUD (Top)**: moves the race's labels and clocks 0 to 24 lines down from the top edge (default 0), at 240 rows<br>**HUD (Bottom)**: lifts the race's instruments 0 to 24 lines off the bottom edge (default 0), at 240 rows<br><br>For a 15kHz screen: fits the picture to it and keeps the HUD out of the overscan. HDMI is not affected; not there with `forced_scandoubler=1` |
 | Resolution | **320x200**: the games' own (default)<br>**320x240**: more of the road and sky<br>**640x200**: twice as sharp across<br>**640x240**: both<br><br>For both games. Nothing is stretched: menus sit in the middle of a 240-row screen, the race's instruments at its edges. Changes at once; a change of width in a menu starts the menu again. The 640 modes reach about 35 to 45 pictures a second: use *Lock to 30 FPS* with them |
 | Lock to 30 FPS | **Off** (default)<br>**On**: a steady 30 pictures a second, for the 640 modes |
 | Rumble | **Off** (default)<br>**On**<br>**Strong**<br><br>The controller shakes on wall hits, crashes, contact with other cars, grass, skids and wheelspin |
 | Cheats | *Screamer:*<br>**Frozen Countdown**: the race's clock stands still<br>**Mirrored**: picture and steering mirrored<br>**Upside Down**: the picture upside down<br>**Props**: the tracks' other props<br>**Afterburner Difficulty**: AFTERBURNER in the difficulty line<br>**Unlock the Bullet**: the Bullet car<br>**Unlock All Tracks**: all twelve, the reversed ones too<br><br>*Screamer 2:*<br>**Unlock All Tracks**: every track<br>**Unlock Fifth Cars**: each team's fifth car<br>**Unlock All Leagues**: every league<br><br>The games' cheat words, which need a keyboard. The unlocks are kept with your records or settings, as the typed words are. Each game shows only its own |
+| Reset | starts the game again from its beginning, as the USER button does |
 | Save Diagnostic Report | the last line: see [If something is wrong](#if-something-is-wrong) |
 
 ## Controls
