@@ -21,3 +21,5 @@
 !/package/screens/*.png
 # ... and each game's logo and icon for tty2oled+'s OLED display (hybrid/docs/oled.md)
 !/package/oled/*.png
+# ... and each game's cover for dnkLauncher (hybrid/docs/dnklauncher.md)
+!/package/covers/*.png
